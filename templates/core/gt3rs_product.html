@@ -1,0 +1,178 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}991 GT3 RS Style Spoiler Shelf - SpoilerShelf{% endblock %}
+
+{% block content %}
+<div class="min-h-screen bg-gray-50 py-12">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Breadcrumb -->
+        <nav class="mb-8">
+            <ol class="flex items-center space-x-2 text-sm text-gray-600">
+                <li><a href="{% url 'landing' %}" class="hover:text-red-600">Home</a></li>
+                <li><span class="mx-2">/</span></li>
+                <li><a href="{% url 'gt3rs_product' %}" class="text-red-600">GT3 RS Spoiler Shelf</a></li>
+            </ol>
+        </nav>
+
+        <!-- Product Details -->
+        <div class="bg-white rounded-lg shadow-lg overflow-hidden" style="min-height: 650px;">
+            <div class="grid md:grid-cols-2 gap-0">
+                <!-- Product Image -->
+                <div class="relative">
+                    <img src="{% static 'images/product-main.png' %}" alt="991 GT3 RS Style Spoiler Shelf"
+                        class="w-full h-[500px] object-cover">
+                    <div class="absolute top-4 left-4">
+                        <span
+                            class="bg-red-500 text-white px-4 py-2 rounded-full text-sm font-bold uppercase tracking-wide">
+                            Sale
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Product Info -->
+                <div class="p-10 flex flex-col justify-center">
+                    <h1 class="text-4xl font-extrabold text-gray-900 mb-4 sans-font tracking-tight">991 GT3 RS Style
+                        SPOILER SHELF - BLACK & WHITE</h1>
+
+                    <!-- Pricing -->
+                    <div class="flex items-center space-x-4 mb-6">
+                        <span class="text-gray-500 line-through text-xl">Rs.9,999.00 PKR</span>
+                        <span class="text-red-600 font-bold text-3xl">Rs.4,999.00 PKR</span>
+                    </div>
+
+                    <!-- Description -->
+                    <div class="prose prose-gray max-w-none mb-8">
+                        <p class="text-lg text-gray-700 mb-6">
+                            Introducing GT3RS Style SPOILER SHELF, spoilershelf.pk first-ever shelf that combines
+                            aggressive design with exceptional functionality. With its sharp, racecar-inspired edges,
+                            SPOILER SHELF is not just a shelf – it's a statement. For the first time ever in PAKISTAN,
+                            this masterpiece is here to transform dull spaces into something extraordinary.
+                        </p>
+
+                        <p class="text-lg text-gray-700 mb-6">
+                            Crafted by hand with precision, the SPOILER SHELF is built to last. The premium wood and
+                            rust- and water-resistant coated metal ensure durability, while the finely engineered
+                            hardware guarantees a smooth, long-lasting experience.
+                        </p>
+
+                        <p class="text-xl font-semibold text-gray-900 mb-6">
+                            Where form meets function and style meets speed. This handcrafted design isn't just storage;
+                            it's a luxury lifestyle statement that elevates any room.
+                        </p>
+                    </div>
+
+                    <!-- Variant Selection -->
+                    <div class="mb-8">
+                        <h3 class="text-lg font-semibold text-gray-900 mb-4">Choose Variant</h3>
+                        <div class="space-y-3">
+                            <div class="flex items-center space-x-3">
+                                <input type="radio" name="variant" id="variant1" value="1"
+                                    class="text-red-600 focus:ring-red-500">
+                                <label for="variant1" class="text-gray-700">Black / Red</label>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <input type="radio" name="variant" id="variant2" value="2"
+                                    class="text-red-600 focus:ring-red-500">
+                                <label for="variant2" class="text-gray-700">Black / No Sticker</label>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <input type="radio" name="variant" id="variant3" value="3"
+                                    class="text-red-600 focus:ring-red-500">
+                                <label for="variant3" class="text-gray-700">White / Red</label>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <input type="radio" name="variant" id="variant4" value="4"
+                                    class="text-red-600 focus:ring-red-500">
+                                <label for="variant4" class="text-gray-700">White / No Sticker</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quantity -->
+                    <div class="mb-8">
+                        <label for="quantity" class="block text-sm font-medium text-gray-700 mb-2">Quantity</label>
+                        <input type="number" id="quantity" name="quantity" value="1" min="1"
+                            class="w-24 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent">
+                    </div>
+
+                    <!-- Specifications -->
+                    <div class="bg-gray-50 p-6 rounded-lg mb-8">
+                        <h3 class="text-xl font-bold text-gray-900 mb-4 sans-font">Specifications</h3>
+                        <div class="space-y-3 text-gray-700">
+                            <div><strong>Material & Size:</strong> Top Wood, Acrylic side wings and Steel brackets;
+                                40inch*8inch*0.75inch</div>
+                            <div><strong>Country of Origin:</strong> 100% Made in Pakistan (Proudly)</div>
+                            <div><strong>Net Quantity:</strong> 1 Wall Shelf (Wood Panel + Steel Mounts + Side acrylic
+                                wings + Hardware) + 1 Downloadable Instruction Manual</div>
+                            <div><strong>Shipping:</strong> Delivers in 7-10 business days</div>
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button onclick="addToCart()"
+                            class="flex-1 bg-red-500 hover:bg-red-600 text-white font-bold py-4 px-8 rounded text-lg transition-colors duration-300">
+                            Add to Cart
+                        </button>
+                        <a href="{% url 'order' %}"
+                            class="flex-1 bg-gray-900 hover:bg-gray-800 text-white font-bold py-4 px-8 rounded text-lg transition-colors duration-300 text-center">
+                            Buy Now
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function addToCart() {
+        const selectedVariant = document.querySelector('input[name="variant"]:checked');
+        const quantity = document.getElementById('quantity').value;
+
+        if (!selectedVariant) {
+            alert('Please select a variant');
+            return;
+        }
+
+        const formData = new FormData();
+        formData.append('quantity', quantity);
+        formData.append('csrfmiddlewaretoken', document.querySelector('meta[name="csrf-token"]').getAttribute('content'));
+
+        fetch(`/add-to-cart/${selectedVariant.value}/`, {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest',
+            }
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('Added to cart!');
+                    // Update cart count
+                    updateCartCount();
+                } else {
+                    alert('Error adding to cart');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Error adding to cart');
+            });
+    }
+
+    // Update cart count function (from base template)
+    function updateCartCount() {
+        fetch('/cart-count/')
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('cart-count').textContent = data.count;
+            })
+            .catch(error => {
+                console.error('Error updating cart count:', error);
+            });
+    }
+</script>
+{% endblock %}

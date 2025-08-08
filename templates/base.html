@@ -1,0 +1,158 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="csrf-token" content="{{ csrf_token }}">
+  <title>{% block title %}SpoilerShelf - Premium Automotive Decor{% endblock %}</title>
+
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Source+Sans+Pro:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            'serif': ['Playfair Display', 'serif'],
+            'sans': ['Source Sans Pro', 'sans-serif'],
+          },
+          colors: {
+            'primary': {
+              50: '#fef2f2',
+              100: '#fee2e2',
+              200: '#fecaca',
+              300: '#fca5a5',
+              400: '#f87171',
+              500: '#ef4444',
+              600: '#dc2626',
+              700: '#b91c1c',
+              800: '#991b1b',
+              900: '#7f1d1d',
+            },
+            'secondary': {
+              50: '#f8fafc',
+              100: '#f1f5f9',
+              200: '#e2e8f0',
+              300: '#cbd5e1',
+              400: '#94a3b8',
+              500: '#64748b',
+              600: '#475569',
+              700: '#334155',
+              800: '#1e293b',
+              900: '#0f172a',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    .serif-font {
+      font-family: 'Playfair Display', serif;
+    }
+
+    .sans-font {
+      font-family: 'Source Sans Pro', sans-serif;
+    }
+  </style>
+</head>
+
+<body class="bg-white">
+  <!-- Navigation -->
+  <nav class="bg-white shadow-lg border-b border-gray-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-16">
+        <!-- Left Navigation -->
+        <div class="flex items-center space-x-8">
+          <a href="{% url 'landing' %}"
+            class="text-gray-700 hover:text-red-600 transition-colors serif-font font-medium">Home</a>
+          <a href="{% url 'order' %}"
+            class="text-gray-700 hover:text-red-600 transition-colors serif-font font-medium">Place Order</a>
+          <a href="{% url 'track_order' %}"
+            class="text-gray-700 hover:text-red-600 transition-colors serif-font font-medium">Track Order</a>
+          <a href="#" class="text-gray-700 hover:text-red-600 transition-colors serif-font font-medium">Contact</a>
+        </div>
+
+        <!-- Center Logo -->
+        <div class="flex items-center space-x-2">
+          <img src="{% static 'images/logo.png' %}" alt="SpoilerShelf Logo" class="h-8 w-8">
+          <span class="text-xl font-bold text-gray-900 serif-font">SpoilerShelf</span>
+        </div>
+
+        <!-- Right Icons -->
+        <div class="flex items-center space-x-6">
+          <a href="#" class="text-gray-700 hover:text-red-600 transition-colors">
+            <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+            </svg>
+          </a>
+          <a href="#" class="text-gray-700 hover:text-red-600 transition-colors">
+            <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+            </svg>
+          </a>
+          <a href="{% url 'order' %}" class="text-gray-700 hover:text-red-600 transition-colors relative">
+            <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-2.5 5M7 13l2.5 5m6-5v6a2 2 0 01-2 2H9a2 2 0 01-2-2v-6m6 0V9a2 2 0 00-2-2H9a2 2 0 00-2 2v4.01">
+              </path>
+            </svg>
+            <span
+              class="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center"
+              id="cart-count">0</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-white py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-center space-x-2 mb-8">
+        <img src="{% static 'images/logo.png' %}" alt="SpoilerShelf Logo" class="h-8 w-8">
+        <span class="text-xl font-bold serif-font">SpoilerShelf</span>
+      </div>
+      <div class="text-center text-gray-400">
+        <p>&copy; 2024 SpoilerShelf. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Update cart count
+    function updateCartCount() {
+      fetch('/cart-count/')
+        .then(response => response.json())
+        .then(data => {
+          document.getElementById('cart-count').textContent = data.count;
+        })
+        .catch(error => {
+          console.error('Error updating cart count:', error);
+        });
+    }
+
+    // Update cart count on page load
+    updateCartCount();
+  </script>
+</body>
+
+</html>

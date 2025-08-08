@@ -1,0 +1,19 @@
+<section class="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white py-20">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center">
+      <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight">
+        {% block hero_title %}Premium Automotive Decor{% endblock %}
+        {% block hero_subtitle %}<span class="block text-yellow-400">Built for Enthusiasts</span>{% endblock %}
+      </h1>
+      <p class="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto">
+        {% block hero_description %}Turn your wall into a racetrack.{% endblock %}
+      </p>
+      {% block hero_button %}
+      <a href="{% url 'order' %}"
+        class="inline-block bg-yellow-500 hover:bg-yellow-600 text-gray-900 font-bold py-4 px-8 rounded-lg text-lg transition-colors duration-300 transform hover:scale-105">
+        Shop Now
+      </a>
+      {% endblock %}
+    </div>
+  </div>
+</section>
