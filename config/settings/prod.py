@@ -42,3 +42,8 @@ STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 # Media: point to Render Static Site (no /media prefix)
 MEDIA_URL = env("MEDIA_URL", default="https://spoilersheflstatic.onrender.com/")
+
+# Static files (production)
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+# Avoid conflicts: do not include source static dirs in prod
+STATICFILES_DIRS = []

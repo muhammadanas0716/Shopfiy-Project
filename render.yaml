@@ -1,0 +1,25 @@
+services:
+  - type: web
+    name: spoilershelf
+    env: python
+    buildCommand: pip install -r requirements.txt
+    preDeployCommand: >-
+      export DJANGO_SETTINGS_MODULE=config.settings.prod &&
+      python manage.py migrate --noinput &&
+      python manage.py collectstatic --noinput
+    startCommand: gunicorn config.wsgi:application --bind 0.0.0.0:$PORT --workers 3
+    envVars:
+      - key: DJANGO_SETTINGS_MODULE
+        value: config.settings.prod
+      - key: DEBUG
+        value: false
+      - key: ALLOWED_HOSTS
+        value: spoilershelf.onrender.com
+      - key: CSRF_TRUSTED_ORIGINS
+        value: https://spoilershelf.onrender.com
+      - key: DB_CONN_MAX_AGE
+        value: 600
+      - key: SECRET_KEY
+        sync: false
+      - key: DATABASE_URL
+        sync: false
