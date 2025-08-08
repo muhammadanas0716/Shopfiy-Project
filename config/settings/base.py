@@ -5,7 +5,6 @@ import os
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 env = environ.Env(DEBUG=(bool, False))
-# Explicitly read the .env from project root to avoid CWD issues
 environ.Env.read_env(str(BASE_DIR / ".env"))
 
 SECRET_KEY = env("SECRET_KEY", default="django-insecure-spoilershelf-secret-key-change-in-production")
@@ -36,40 +35,25 @@ MIDDLEWARE = [
 ROOT_URLCONF = "config.urls"
 WSGI_APPLICATION = "config.wsgi.application"
 
-# Database configuration (Neon required)
-# No SQLite fallback; a DATABASE_URL must be provided.
 DATABASES = {
     "default": env.db("DATABASE_URL")
 }
-
-# Keep DB connections open for a bit in production for performance
 DATABASES["default"]["CONN_MAX_AGE"] = env.int("DB_CONN_MAX_AGE", default=600)
 
 AUTH_PASSWORD_VALIDATORS = [
-    {
-        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
-    },
-    {
-        "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",
-    },
-    {
-        "NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",
-    },
-    {
-        "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
-    },
+    {"NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"},
+    {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator"},
+    {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator"},
+    {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator"},
 ]
 
+# STATIC + MEDIA CONFIG
 STATIC_URL = "/static/"
-STATIC_ROOT = os.path.join(BASE_DIR, "static")
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "staticfiles"),
-]
-
+STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]  # this is the fix
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
 MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
-
 
 LANGUAGE_CODE = "en-us"
 TIME_ZONE = "Asia/Karachi"
@@ -93,4 +77,4 @@ TEMPLATES = [
             ],
         },
     },
-] 
+]

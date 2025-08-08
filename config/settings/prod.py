@@ -22,13 +22,9 @@ ALLOWED_HOSTS = env.list("ALLOWED_HOSTS", default=["*"])
 CSRF_TRUSTED_ORIGINS = env.list("CSRF_TRUSTED_ORIGINS", default=[])
 
 # Require a strong secret key in production
-# Ensure you set SECRET_KEY in your environment
 SECRET_KEY = env("SECRET_KEY")
 
-# DATABASES comes from base via env DATABASE_URL
-
 # Static files with WhiteNoise for production
-# Insert WhiteNoise right after SecurityMiddleware without duplicating entries
 _base_middleware = list(MIDDLEWARE)
 if "whitenoise.middleware.WhiteNoiseMiddleware" not in _base_middleware:
     try:
@@ -40,10 +36,9 @@ MIDDLEWARE = _base_middleware
 
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
+# Static files (production)
+STATICFILES_DIRS = []  # ignore STATICFILES_DIRS in production
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+
 # Media: point to Render Static Site (no /media prefix)
 MEDIA_URL = env("MEDIA_URL", default="https://spoilersheflstatic.onrender.com/")
-
-# Static files (production)
-STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
-# Avoid conflicts: do not include source static dirs in prod
-STATICFILES_DIRS = []
