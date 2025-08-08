@@ -162,3 +162,6 @@ static/
 .Trashes
 ehthumbs.db
 Thumbs.db 
+# Allow committing seed media files for Render static site
+!media/.keep
+!media/products/**
