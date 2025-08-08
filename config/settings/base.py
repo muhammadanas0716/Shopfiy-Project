@@ -35,25 +35,14 @@ MIDDLEWARE = [
 ROOT_URLCONF = "config.urls"
 WSGI_APPLICATION = "config.wsgi.application"
 
-# For now, use SQLite as requested
+# Database configuration (Neon required)
+# No SQLite fallback; a DATABASE_URL must be provided.
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
-    }
+    "default": env.db("DATABASE_URL")
 }
 
-# PostgreSQL configuration (commented out for now)
-# DATABASES = {
-#     "default": {
-#         "ENGINE": "django.db.backends.postgresql",
-#         "NAME": env("DB_NAME", default="spoilershelf"),
-#         "USER": env("DB_USER", default="spoileradmin"),
-#         "PASSWORD": env("DB_PASSWORD", default="supersecure"),
-#         "HOST": env("DB_HOST", default="localhost"),
-#         "PORT": env("DB_PORT", default="5432"),
-#     }
-# }
+# Keep DB connections open for a bit in production for performance
+DATABASES["default"]["CONN_MAX_AGE"] = env.int("DB_CONN_MAX_AGE", default=600)
 
 AUTH_PASSWORD_VALIDATORS = [
     {
