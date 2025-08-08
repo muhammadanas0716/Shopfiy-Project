@@ -40,5 +40,5 @@ MIDDLEWARE = _base_middleware
 
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
-# Media: allow pointing to a Render Static Site via env
-MEDIA_URL = env("MEDIA_URL", default="/media/")
+# Media: point to Render Static Site (no /media prefix)
+MEDIA_URL = env("MEDIA_URL", default="https://spoilersheflstatic.onrender.com/")
