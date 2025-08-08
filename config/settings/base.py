@@ -2,10 +2,11 @@ from pathlib import Path
 import environ
 import os
 
-env = environ.Env(DEBUG=(bool, False))
-environ.Env.read_env()
-
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
+
+env = environ.Env(DEBUG=(bool, False))
+# Explicitly read the .env from project root to avoid CWD issues
+environ.Env.read_env(str(BASE_DIR / ".env"))
 
 SECRET_KEY = env("SECRET_KEY", default="django-insecure-spoilershelf-secret-key-change-in-production")
 DEBUG = env.bool("DEBUG", default=True)
