@@ -39,3 +39,6 @@ if "whitenoise.middleware.WhiteNoiseMiddleware" not in _base_middleware:
 MIDDLEWARE = _base_middleware
 
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+
+# Media: allow pointing to a Render Static Site via env
+MEDIA_URL = env("MEDIA_URL", default="/media/")
