@@ -34,7 +34,11 @@ if "whitenoise.middleware.WhiteNoiseMiddleware" not in _base_middleware:
         _base_middleware.insert(0, "whitenoise.middleware.WhiteNoiseMiddleware")
 MIDDLEWARE = _base_middleware
 
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
+
+# WhiteNoise configuration for better admin static files handling
+WHITENOISE_USE_FINDERS = True
+WHITENOISE_AUTOREFRESH = True
 
 # Static files (production)
 STATICFILES_DIRS = []  # ignore STATICFILES_DIRS in production
