@@ -9,27 +9,7 @@ admin.site.site_header = "SpoilerShelf Administration"
 admin.site.site_title = "SpoilerShelf Admin"
 admin.site.index_title = "Welcome to SpoilerShelf Administration"
 
-# Override admin index view to add statistics
-def admin_index_view(request):
-    from django.contrib.admin.sites import site
-    
-    # Get the original response
-    response = site.index(request)
-    
-    # Add our custom context
-    if hasattr(response, 'context_data'):
-        response.context_data.update({
-            'total_orders': Order.objects.count(),
-            'total_revenue': Order.objects.aggregate(Sum('total_amount'))['total_amount__sum'] or 0,
-            'total_products': Product.objects.filter(is_active=True).count(),
-            'pending_orders': Order.objects.filter(status='pending').count(),
-            'recent_orders': Order.objects.order_by('-created_at')[:5],
-        })
-    
-    return response
-
-# Monkey patch the admin site index view
-admin.site.index = admin_index_view
+# Remove the problematic custom admin site code for now
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
