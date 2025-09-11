@@ -1,0 +1,103 @@
+{% extends "admin/base.html" %}
+
+{% block title %}{{ title }} | {{ site_title|default:_('Django site admin') }}{% endblock %}
+
+{% block branding %}
+<h1 id="site-name">
+    <a href="{% url 'admin:index' %}">
+        <img src="https://lh3.googleusercontent.com/d/13UEZWXc6yn04CXz_lkP_4EHhHAMVD6Gg=w1600" 
+             alt="SpoilerShelf Logo" 
+             style="height: 32px; width: 32px; vertical-align: middle; margin-right: 10px;">
+        SpoilerShelf Admin
+    </a>
+</h1>
+{% endblock %}
+
+{% block nav-global %}{% endblock %}
+
+{% block extrahead %}
+{{ block.super }}
+<style>
+    /* Custom admin styling */
+    #header {
+        background: #1f2937;
+        background: linear-gradient(135deg, #1f2937 0%, #374151 100%);
+    }
+    
+    #site-name a {
+        color: #fff !important;
+        text-decoration: none !important;
+        font-weight: bold;
+        font-size: 1.2em;
+    }
+    
+    #site-name a:hover {
+        color: #ef4444 !important;
+    }
+    
+    .module h2, .module caption, .inline-group h2 {
+        background: #ef4444;
+        background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+    }
+    
+    .button, input[type=submit], input[type=button], .submit-row input, a.button {
+        background: #ef4444 !important;
+        background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%) !important;
+        border-color: #dc2626 !important;
+    }
+    
+    .button:hover, input[type=submit]:hover, input[type=button]:hover, .submit-row input:hover, a.button:hover {
+        background: #dc2626 !important;
+        background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%) !important;
+    }
+    
+    .selector-chosen h2 {
+        background: #10b981 !important;
+    }
+    
+    #changelist-filter h2 {
+        background: #6b7280;
+    }
+    
+    .paginator a.page-link {
+        border: 1px solid #ef4444;
+        color: #ef4444;
+    }
+    
+    .paginator .this-page {
+        background: #ef4444;
+        border-color: #ef4444;
+    }
+    
+    /* Make tables more readable */
+    #changelist table tbody tr:nth-child(even) {
+        background: #f9fafb;
+    }
+    
+    #changelist table tbody tr:hover {
+        background: #fef2f2;
+    }
+    
+    /* Status badges styling */
+    .field-status_badge span,
+    .field-payment_status span,
+    .field-delivery_status span {
+        padding: 4px 8px;
+        border-radius: 4px;
+        font-size: 0.875em;
+        display: inline-block;
+    }
+    
+    /* Responsive improvements */
+    @media (max-width: 768px) {
+        #site-name {
+            font-size: 1em;
+        }
+        
+        #site-name img {
+            height: 24px;
+            width: 24px;
+        }
+    }
+</style>
+{% endblock %}
