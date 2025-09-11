@@ -34,12 +34,19 @@ class Order(models.Model):
         ('cancelled', 'Cancelled'),
     ]
     
+    SHIPPING_CHOICES = [
+        ('normal', 'Normal Shipping (5-7 days) - Rs. 350'),
+        ('express', 'Express Shipping (2-3 days) - Rs. 500'),
+    ]
+    
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='pending')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     is_paid = models.BooleanField(default=False)
     is_delivered = models.BooleanField(default=False)
     total_amount = models.DecimalField(max_digits=10, decimal_places=2, default=0)
+    shipping_method = models.CharField(max_length=20, choices=SHIPPING_CHOICES, default='normal')
+    shipping_cost = models.DecimalField(max_digits=10, decimal_places=2, default=350)
     
     # Customer information
     customer_name = models.CharField(max_length=255)
@@ -51,10 +58,14 @@ class Order(models.Model):
         return f"Order #{self.pk} - {self.customer_name}"
     
     def calculate_total(self):
-        total = sum(item.get_total() for item in self.items.all())
+        subtotal = sum(item.get_total() for item in self.items.all())
+        total = subtotal + self.shipping_cost
         self.total_amount = total
         self.save()
         return total
+    
+    def get_subtotal(self):
+        return sum(item.get_total() for item in self.items.all())
     
     class Meta:
         ordering = ['-created_at']

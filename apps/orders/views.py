@@ -118,7 +118,15 @@ def submit_order(request):
         if form.is_valid():
             try:
                 # Create the order
-                order = form.save()
+                order = form.save(commit=False)
+                
+                # Set shipping cost based on selected method
+                if order.shipping_method == 'express':
+                    order.shipping_cost = 500
+                else:
+                    order.shipping_cost = 350
+                
+                order.save()
                 
                 # Get cart items from session
                 cart = request.session.get('cart', {})
@@ -147,8 +155,8 @@ def submit_order(request):
                         messages.error(request, f'Product variant not found.')
                         continue
                 
-                # Update order total
-                order.total_amount = total_amount
+                # Update order total (subtotal + shipping)
+                order.total_amount = total_amount + order.shipping_cost
                 order.save()
                 
                 # Clear cart

@@ -5,7 +5,7 @@ from .models import Order
 class OrderForm(ModelForm):
     class Meta:
         model = Order
-        fields = ['customer_name', 'customer_email', 'customer_phone', 'shipping_address']
+        fields = ['customer_name', 'customer_email', 'customer_phone', 'shipping_address', 'shipping_method']
         widgets = {
             'customer_name': forms.TextInput(attrs={
                 'class': 'w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent sans-font',
@@ -23,6 +23,9 @@ class OrderForm(ModelForm):
                 'class': 'w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent sans-font',
                 'placeholder': 'Your complete shipping address',
                 'rows': 3
+            }),
+            'shipping_method': forms.RadioSelect(attrs={
+                'class': 'shipping-method-radio'
             }),
         }
     
