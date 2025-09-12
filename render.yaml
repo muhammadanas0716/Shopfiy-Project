@@ -5,6 +5,7 @@ services:
     buildCommand: pip install -r requirements.txt
     preDeployCommand: >-
       export DJANGO_SETTINGS_MODULE=config.settings.prod &&
+      python manage.py makemigrations --noinput &&
       python manage.py migrate --noinput &&
       python manage.py collectstatic --noinput
     startCommand: gunicorn config.wsgi:application --bind 0.0.0.0:$PORT --workers 3

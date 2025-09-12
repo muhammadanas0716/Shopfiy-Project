@@ -1,6 +1,6 @@
 from .base import *
 
-DEBUG = True
+DEBUG = False
 
 # Development-specific settings
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

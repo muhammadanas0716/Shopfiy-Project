@@ -44,5 +44,3 @@ WHITENOISE_AUTOREFRESH = True
 STATICFILES_DIRS = []  # ignore STATICFILES_DIRS in production
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
-# Media: point to Render Static Site (no /media prefix)
-MEDIA_URL = env("MEDIA_URL", default="https://spoilersheflstatic.onrender.com/")
