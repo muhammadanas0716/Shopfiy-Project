@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Global helpers to mirror Django template classes */
+.serif-font { font-family: 'Playfair Display', serif; }
+.sans-font { font-family: 'Source Sans Pro', sans-serif; }
+
+/* Basic body background to match design */
+body { background: white; }
+
