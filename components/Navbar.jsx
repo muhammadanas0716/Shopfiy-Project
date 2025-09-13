@@ -10,12 +10,15 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center space-x-8">
-            <Link href="/" className="text-gray-700 hover:text-red-600 transition-colors serif-font font-medium">
+            <Link
+              href="/"
+              className="text-gray-700 hover:text-red-600 transition-colors serif-font font-medium"
+            >
               Home
             </Link>
-            <Link href="/checkout" className="text-gray-700 hover:text-red-600 transition-colors serif-font font-medium">
+            {/* <Link href="/checkout" className="text-gray-700 hover:text-red-600 transition-colors serif-font font-medium">
               Place Order
-            </Link>
+            </Link> */}
             <a
               href="https://wa.me/923006481758"
               target="_blank"
@@ -32,12 +35,22 @@ export default function Navbar() {
               alt="Logo"
               className="h-8 w-8"
             />
-            <span className="text-xl font-bold text-gray-900 serif-font">SpoilerShelf</span>
+            <span className="text-xl font-bold text-gray-900 serif-font">
+              SpoilerShelf
+            </span>
           </div>
 
           <div className="flex items-center space-x-6">
-            <Link href="/checkout" className="text-gray-700 hover:text-red-600 transition-colors relative">
-              <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <Link
+              href="/checkout"
+              className="text-gray-700 hover:text-red-600 transition-colors relative"
+            >
+              <svg
+                className="h-6 w-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -55,4 +68,3 @@ export default function Navbar() {
     </nav>
   );
 }
-
